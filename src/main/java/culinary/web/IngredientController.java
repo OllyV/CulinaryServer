@@ -37,6 +37,7 @@ public class IngredientController {
     @Resource
     private ObjectMapper objectMapper;
 
+    @CrossOrigin(origins = "http://localhost:8090")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<String> getIngs()  {
         return new ResponseEntity(ingRepository.findAll(),HttpStatus.OK);
