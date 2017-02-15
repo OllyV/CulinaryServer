@@ -37,19 +37,19 @@ public class IngredientController {
     @Resource
     private ObjectMapper objectMapper;
 
-    @CrossOrigin(origins = "http://localhost:8090")
+    //@CrossOrigin(origins = "http://localhost:8090")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<String> getIngs()  {
         return new ResponseEntity(ingRepository.findAll(),HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:8090")
+    //@CrossOrigin(origins = "http://localhost:8090")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<String> addIngs(@RequestBody Ingredient ingredient, WebRequest request)  {
         return new ResponseEntity(ingRepository.save(ingredient),HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:8090")
+    //@CrossOrigin(origins = "http://localhost:8090")
     @RequestMapping(value = "/{ingId}", method = RequestMethod.GET)
     public ResponseEntity<String> getIng(@PathVariable("ingId") String id)  {
         return new ResponseEntity(ingRepository.findOne(id),HttpStatus.OK);
