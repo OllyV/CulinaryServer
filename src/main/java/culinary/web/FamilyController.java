@@ -29,21 +29,25 @@ public class FamilyController {
     @Resource
     private ObjectMapper objectMapper;
 
+    @CrossOrigin
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<String> getFam()  {
         return new ResponseEntity(famRepository.findAll(), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<String> addFam(@RequestBody Family family, WebRequest request)  {
         return new ResponseEntity(famRepository.save(family),HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/{famId}", method = RequestMethod.GET)
     public ResponseEntity<String> getIng(@PathVariable("famId") String id)  {
         return new ResponseEntity(famRepository.findOne(id),HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/{famId}/del", method = RequestMethod.DELETE)
     public ResponseEntity<String> delIng(@PathVariable("famId") String id)  {
         famRepository.delete(id);
