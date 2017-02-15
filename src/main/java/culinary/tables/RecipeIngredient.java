@@ -1,12 +1,15 @@
 package culinary.tables;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by olya on 12.02.2017.
  */
 public class RecipeIngredient {
 
+    @JsonProperty("name")
     private String ingredientName;
-
+    @JsonProperty("count")
     private Integer ingredientCount;
 
     public RecipeIngredient(String name, Integer count) {

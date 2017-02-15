@@ -64,21 +64,6 @@ public class IngredientController {
         return new ResponseEntity("{\""+id+"\":\"deleted\"}", HttpStatus.OK);
     }
 
-
-    protected ResponseEntity<String> newJsonResponse(final Object object) {
-        return new ResponseEntity(valueOf(object), HttpStatus.OK);
-    }
-
-    private String valueOf(final Object object) {
-        String returnResult = null;
-        try {
-            returnResult = objectMapper.writeValueAsString(object);
-        } catch (JsonProcessingException ex) {
-        }
-        return returnResult;
-    }
-
-
 }
 
 
