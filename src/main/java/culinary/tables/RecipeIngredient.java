@@ -10,20 +10,24 @@ public class RecipeIngredient {
     @JsonProperty("name")
     private String ingredientName;
     @JsonProperty("count")
-    private Integer ingredientCount;
+    private Float ingredientCount;
+    @JsonProperty("unit")
+    private String ingredientUnit;
 
-    public RecipeIngredient(String name, Integer count) {
+    public RecipeIngredient(String name, Float count, String unit) {
         this.ingredientName = name;
         this.ingredientCount = count;
+        this.ingredientUnit = unit;
     }
 
-    public RecipeIngredient() {}
+    public RecipeIngredient() {
+    }
 
-    public Integer getIngredientCount() {
+    public Float getIngredientCount() {
         return ingredientCount;
     }
 
-    public void setIngredientCount(Integer ingredientCount) {
+    public void setIngredientCount(Float ingredientCount) {
         this.ingredientCount = ingredientCount;
     }
 
@@ -34,5 +38,14 @@ public class RecipeIngredient {
     public void setIngredientName(String ingredientName) {
         this.ingredientName = ingredientName;
     }
+
+    public String getIngredientUnit() {
+        return ingredientUnit;
+    }
+
+    public void setIngredientUnit(String ingredientUnit) {
+        this.ingredientUnit = ingredientUnit;
+    }
+
 
 }
