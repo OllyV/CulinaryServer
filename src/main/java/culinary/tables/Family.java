@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 
 @Document(collection = "Family")
-public class Family {
+public class Family implements Comparable<Family> {
 
     @Id
     private String id;
@@ -48,6 +48,11 @@ public class Family {
 
     public void setFamilyName(String familyName) {
         this.familyName = familyName;
+    }
+
+    @Override
+    public int compareTo(Family family) {
+        return this.familyName.compareTo(family.getFamilyName());
     }
 
 

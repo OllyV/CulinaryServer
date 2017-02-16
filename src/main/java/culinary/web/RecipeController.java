@@ -45,7 +45,7 @@ public class RecipeController {
     @CrossOrigin
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<String> getRec() {
-        List<String> str = recRepository.findAll().stream()
+        List<String> str = recRepository.findAll().stream().sorted()
                 .map((recipe) -> valueOf(recipe))
                 .collect(Collectors.toList());
         return new ResponseEntity("["+String.join(",", str)+"]", HttpStatus.OK);
@@ -65,7 +65,7 @@ public class RecipeController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/all/SuperPuperDeleting", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/all/SuperDuperDeleting", method = RequestMethod.DELETE)
     public ResponseEntity<String> delAll()  {
         recRepository.deleteAll();
         return new ResponseEntity("{\"all\":\"deleted\"}", HttpStatus.OK);

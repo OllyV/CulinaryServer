@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document(collection = "Ingredient")
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient> {
     @Id
     private String id;
     @JsonProperty("name")
@@ -20,7 +20,8 @@ public class Ingredient {
         this.ingredientName = name;
     }
 
-    public Ingredient() {}
+    public Ingredient() {
+    }
 
 
     public String getIngredientName() {
@@ -39,6 +40,9 @@ public class Ingredient {
         this.ingredientName = ingredientName;
     }
 
-
+    @Override
+    public int compareTo(Ingredient ingredient) {
+        return this.ingredientName.compareTo(ingredient.getIngredientName());
+    }
 
 }

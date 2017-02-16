@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  */
 
 @Document(collection = "Recipe")
-public class Recipe {
+public class Recipe implements Comparable<Recipe> {
 
     @Id
     private String id;
@@ -64,7 +64,10 @@ public class Recipe {
         return returnResult;
     }
 
-
+    @Override
+    public int compareTo(Recipe recipe) {
+        return this.recipeName.compareTo(recipe.getRecipeName());
+    }
 
 
     public Recipe() {}

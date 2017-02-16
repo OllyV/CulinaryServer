@@ -37,21 +37,23 @@ public class IngredientController {
     @Resource
     private ObjectMapper objectMapper;
 
-    //@CrossOrigin(origins = "http://localhost:8090")
     @CrossOrigin
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<String> getIngs()  {
-        return new ResponseEntity(ingRepository.findAll(),HttpStatus.OK);
+        List<String> str = ingRepository.findAll().stream().sorted()
+                .map((ingredient) -> valueOf(ingredient))
+                .collect(Collectors.toList());
+        return new ResponseEntity("["+String.join(",", str)+"]", HttpStatus.OK);
     }
 
-    //@CrossOrigin(origins = "http://localhost:8090")
+
     @CrossOrigin
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<String> addIngs(@RequestBody Ingredient ingredient, WebRequest request)  {
         return new ResponseEntity(ingRepository.save(ingredient),HttpStatus.OK);
     }
 
-    //@CrossOrigin(origins = "http://localhost:8090")
+
     @CrossOrigin
     @RequestMapping(value = "/{ingId}", method = RequestMethod.GET)
     public ResponseEntity<String> getIng(@PathVariable("ingId") String id)  {
@@ -62,6 +64,26 @@ public class IngredientController {
     public ResponseEntity<String> delIng(@PathVariable("ingId") String id)  {
         ingRepository.delete(id);
         return new ResponseEntity("{\""+id+"\":\"deleted\"}", HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/all/SuperDuperDeleting", method = RequestMethod.DELETE)
+    public ResponseEntity<String> delAll()  {
+        ingRepository.deleteAll();
+        return new ResponseEntity("{\"all\":\"deleted\"}", HttpStatus.OK);
+    }
+
+    protected ResponseEntity<String> newJsonResponse(final Object object) {
+        return new ResponseEntity<>(valueOf(object), HttpStatus.OK);
+    }
+
+    private String valueOf(final Object object) {
+        String returnResult = null;
+        try {
+            returnResult = objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException ex) {
+        }
+        return returnResult;
     }
 
 }
