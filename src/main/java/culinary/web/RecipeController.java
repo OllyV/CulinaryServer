@@ -68,7 +68,7 @@ public class RecipeController {
     @RequestMapping(value = "/all/SuperPuperDeleting", method = RequestMethod.DELETE)
     public ResponseEntity<String> delAll()  {
         recRepository.deleteAll();
-        return new ResponseEntity("{deleted}", HttpStatus.OK);
+        return new ResponseEntity("{\"deleted\"}", HttpStatus.OK);
     }
 
     private String valueOf(final Object object) {
