@@ -7,27 +7,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class RecipeIngredient {
 
+
     @JsonProperty("name")
     private String ingredientName;
     @JsonProperty("count")
-    private Float ingredientCount;
-    @JsonProperty("unit")
-    private String ingredientUnit;
+    private String ingredientCount;
 
-    public RecipeIngredient(String name, Float count, String unit) {
+    public RecipeIngredient(String name, String count) {
         this.ingredientName = name;
         this.ingredientCount = count;
-        this.ingredientUnit = unit;
     }
 
     public RecipeIngredient() {
     }
 
-    public Float getIngredientCount() {
+    public String getIngredientCount() {
         return ingredientCount;
     }
 
-    public void setIngredientCount(Float ingredientCount) {
+    public void setIngredientCount(String ingredientCount) {
         this.ingredientCount = ingredientCount;
     }
 
@@ -37,14 +35,6 @@ public class RecipeIngredient {
 
     public void setIngredientName(String ingredientName) {
         this.ingredientName = ingredientName;
-    }
-
-    public String getIngredientUnit() {
-        return ingredientUnit;
-    }
-
-    public void setIngredientUnit(String ingredientUnit) {
-        this.ingredientUnit = ingredientUnit;
     }
 
 
